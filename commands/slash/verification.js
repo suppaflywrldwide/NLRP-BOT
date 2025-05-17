@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRow
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('setupverification')
+    .setName('verification')
     .setDescription('Sets up the verification system'),
     
   async execute(interaction) {
