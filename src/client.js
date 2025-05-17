@@ -115,10 +115,12 @@ class CodeX extends Client {
         }]
       });
 
-      const poster = AutoPoster(process.env.topgg, this)
-      poster.on("posted", () => {
-        this.logger.log("Posted stats to Top.gg!", 'vote')
-      });
+      if (process.env.topgg) {
+        const poster = AutoPoster(process.env.topgg, this)
+        poster.on("posted", () => {
+          this.logger.log("Posted stats to Top.gg!", 'vote')
+        });
+      }
 
 
     })
