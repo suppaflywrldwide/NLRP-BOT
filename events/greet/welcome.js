@@ -9,14 +9,29 @@ module.exports = (client) => {
 
     const embed = new EmbedBuilder()
       .setColor('#2f3136')
-      .setTitle('👋 Welcome to the Server!')
+      .setAuthor({ 
+        name: `Welcome to ${member.guild.name}!`, 
+        iconURL: member.guild.iconURL({ dynamic: true }) 
+      })
       .setDescription(`
-      ╭・❒ Welcome ${member} to **${member.guild.name}**!
-      ├・❒ Member Count: **${member.guild.memberCount}**
-      ╰・❒ Enjoy your stay!`)
-      .setThumbnail(member.guild.iconURL({ dynamic: true }))
+      ╭・──────────────────・╮
+         👋 Welcome ${member}!
+      ╰・──────────────────・╯
+      
+      ┌─────── Information ───────┐
+      ❒ You are member #${member.guild.memberCount}
+      ❒ Account Created: <t:${Math.floor(member.user.createdTimestamp / 1000)}:R>
+      ❒ Join Date: <t:${Math.floor(Date.now() / 1000)}:R>
+      └───────────────────────────┘
+      
+      ✧ Make sure to check our rules
+      ✧ Enjoy your stay with us!`)
+      .setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 256 }))
       .setImage('https://cdn.discordapp.com/attachments/1065722905315557387/1135971750882312332/standard_1.gif')
-      .setFooter({ text: `ID: ${member.id}` })
+      .setFooter({ 
+        text: `${member.guild.name} • Member Joined`, 
+        iconURL: member.guild.iconURL({ dynamic: true }) 
+      })
       .setTimestamp();
 
     welcomeChannel.send({ content: `<@${member.id}>`, embeds: [embed] });
@@ -29,13 +44,26 @@ module.exports = (client) => {
 
     const embed = new EmbedBuilder()
       .setColor('#2f3136')
-      .setTitle('👋 Goodbye!')
+      .setAuthor({ 
+        name: `Member Left ${member.guild.name}`, 
+        iconURL: member.guild.iconURL({ dynamic: true }) 
+      })
       .setDescription(`
-      ╭・❒ ${member.user.tag} has left **${member.guild.name}**
-      ├・❒ Member Count: **${member.guild.memberCount}**
-      ╰・❒ We hope to see you again!`)
-      .setThumbnail(member.guild.iconURL({ dynamic: true }))
-      .setFooter({ text: `ID: ${member.id}` })
+      ╭・──────────────────・╮
+         👋 Goodbye ${member.user.tag}
+      ╰・──────────────────・╯
+      
+      ┌─────── Details ───────┐
+      ❒ Left Server: <t:${Math.floor(Date.now() / 1000)}:R>
+      ❒ Remaining Members: ${member.guild.memberCount}
+      └────────────────────────┘
+      
+      ✧ We hope to see you again!`)
+      .setThumbnail(member.user.displayAvatarURL({ dynamic: true, size: 256 }))
+      .setFooter({ 
+        text: `${member.guild.name} • Member Left`, 
+        iconURL: member.guild.iconURL({ dynamic: true }) 
+      })
       .setTimestamp();
 
     leaveChannel.send({ content: `<@${member.id}>`, embeds: [embed] });
