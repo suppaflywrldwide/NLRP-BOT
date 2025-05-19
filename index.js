@@ -29,12 +29,22 @@ console.log(`
 ░╚════╝░░╚════╝░╚═════╝░╚══════╝╚═╝░░╚═╝
 `);
 
-// 6. Connect your custom client/bot
-const client = new CodeX();
+// 6. Parse shard info from environment variables
+const shardCount = Number(process.env.SHARD_COUNT) || 1;
+const shardIds = process.env.SHARD_IDS
+  ? process.env.SHARD_IDS.split(',').map(id => Number(id))
+  : [0];
+
+// 7. Connect your custom client/bot with shard options
+const client = new CodeX({
+  shards: shardIds,
+  shardCount: shardCount,
+});
+
 client.connect();
 
-// 7. Export client if needed elsewhere
+// 8. Export client if needed elsewhere
 module.exports = client;
 
-// 8. Final log
+// 9. Final log
 console.log(`Made By Ray`);
