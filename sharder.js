@@ -6,7 +6,6 @@ const { ClusterManager } = require('discord-hybrid-sharding');
 
 const manager = new ClusterManager('./index.js', {
   totalShards: 'auto',
-// shardsPerClusters: 1,
   mode: 'process',
   token: token,
   respawn: true,
@@ -16,6 +15,13 @@ const manager = new ClusterManager('./index.js', {
   },
 });
 
-manager.on('debug', (x) => logger.log(x, 'shard'))
+manager.on('debug', (x) => logger.log(x, 'shard'));
 
 manager.spawn({ timeout: -1 });
+
+// Optional: info for web route
+function getShardInfo() {
+  return 'Cluster Manager is running';
+}
+
+module.exports = { getShardInfo };
