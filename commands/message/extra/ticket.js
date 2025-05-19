@@ -1,11 +1,18 @@
-const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+
+const { EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
 
 module.exports = {
-  name: 'vticket',
+  name: 'ticket',
+  category: 'extra',
+  aliases: ['tickets'],
   description: 'Sets up the ticket system',
-  
-  async execute(message, args) {
-    const targetChannel = await message.client.channels.fetch('1260925060932173848');
+  args: false,
+  usage: 'ticket',
+  userPerms: ['Administrator'],
+  botPerms: ['Administrator'],
+  owner: false,
+  execute: async (client, message, args, prefix) => {
+    const targetChannel = await message.guild.channels.fetch('1260925060932173848');
     
     if (!targetChannel) {
       return message.reply({ content: 'Could not find the target channel!' });
