@@ -24,8 +24,15 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-// Connect your bot client
-const client = new CodeX();
+// Read shard info from env or use default
+const shardCount = Number(process.env.SHARD_COUNT) || 1;
+const shardId = process.env.SHARD_ID !== undefined ? Number(process.env.SHARD_ID) : 0;
+
+// Connect your bot client with proper shard options
+const client = new CodeX({
+  shards: [shardId],
+  shardCount: shardCount,
+});
 client.connect();
 
 module.exports = client;
