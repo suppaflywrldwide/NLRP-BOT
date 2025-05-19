@@ -4,22 +4,25 @@ const logger = require('./utils/plugins/logger.js');
 const { token } = require('./configuration/config.js');
 const { ClusterManager } = require('discord-hybrid-sharding');
 
+// Create ClusterManager to handle shards and clusters
 const manager = new ClusterManager('./index.js', {
-  totalShards: 'auto',
-  mode: 'process',
+  totalShards: 'auto',      // Auto detect number of shards
+  mode: 'process',          // Use child processes for clusters
   token: token,
-  respawn: true,
+  respawn: true,            // Restart clusters on crash
   restarts: {
-    max: 5,
-    interval: 10000,
+    max: 5,                 // Max restarts allowed
+    interval: 10000,        // Time window to reset restart count (ms)
   },
 });
 
-manager.on('debug', (x) => logger.log(x, 'shard'));
+// Log debug info via your custom logger
+manager.on('debug', (message) => logger.log(message, 'shard'));
 
+// Spawn clusters, wait indefinitely for them to be ready
 manager.spawn({ timeout: -1 });
 
-// Optional: info for web route
+// Provide shard info for your express route
 function getShardInfo() {
   return 'Cluster Manager is running';
 }
