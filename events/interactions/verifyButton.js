@@ -5,7 +5,7 @@ module.exports = (client) => {
     
     if (interaction.customId === 'verify') {
       try {
-        await interaction.member.roles.add('1373838747430424636');
+        await interaction.member.roles.add('1374035814903709746');
         await interaction.reply({ content: 'You have been verified!', ephemeral: true });
       } catch (error) {
         console.error(error);
