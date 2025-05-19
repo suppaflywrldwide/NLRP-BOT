@@ -7,6 +7,12 @@ module.exports = {
     .setDescription('Sets up the ticket system'),
     
   async execute(interaction) {
+    const targetChannel = await interaction.client.channels.fetch('1260925060932173848');
+    
+    if (!targetChannel) {
+      return interaction.reply({ content: 'Could not find the target channel!', ephemeral: true });
+    }
+
     const embed = new EmbedBuilder()
       .setColor('#0099ff')
       .setTitle('Support Ticket System')
@@ -27,7 +33,7 @@ module.exports = {
 
     const row = new ActionRowBuilder().addComponents(select);
 
-    await interaction.channel.send({ embeds: [embed], components: [row] });
-    await interaction.reply({ content: 'Ticket system set up!', ephemeral: true });
+    await targetChannel.send({ embeds: [embed], components: [row] });
+    await interaction.reply({ content: `Ticket system has been set up in <#1260925060932173848>!`, ephemeral: true });
   }
 };
