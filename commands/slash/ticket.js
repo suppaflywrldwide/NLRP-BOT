@@ -5,7 +5,7 @@ module.exports = {
   description: 'Sets up the ticket system',
   
   async execute(message, args) {
-    const targetChannel = await message.client.channels.fetch('1260925060932173848');
+    const targetChannel = await message.client.channels.fetch('1375403360311836692');
     
     if (!targetChannel) {
       return message.reply({ content: 'Could not find the target channel!' });
