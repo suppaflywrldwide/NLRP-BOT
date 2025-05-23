@@ -7,7 +7,7 @@ module.exports = {
     .setDescription('Sets up the verification system'),
     
   async execute(interaction) {
-    if (interaction.channelId !== '1370036118409711626') {
+    if (interaction.channelId !== '1375462653152989286') {
       return interaction.reply({ content: 'This command can only be used in the verification channel!', ephemeral: true });
     }
 
