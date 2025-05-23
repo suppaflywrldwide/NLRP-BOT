@@ -12,7 +12,7 @@ module.exports = {
   botPerms: ['Administrator'],
   owner: false,
   execute: async (client, message, args, prefix) => {
-    const targetChannel = await message.guild.channels.fetch('1260925060932173848');
+    const targetChannel = await message.guild.channels.fetch('1375403360311836692');
     
     if (!targetChannel) {
       return message.reply({ content: 'Could not find the target channel!' });
@@ -39,6 +39,6 @@ module.exports = {
     const row = new ActionRowBuilder().addComponents(select);
 
     await targetChannel.send({ embeds: [embed], components: [row] });
-    await message.reply({ content: `Ticket system has been set up in <#1260925060932173848>!` });
+    await message.reply({ content: `Ticket system has been set up in <#1375403360311836692>!` });
   }
 };
